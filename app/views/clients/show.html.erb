@@ -1,0 +1,14 @@
+<%= link_to "All clients", clients_path %>
+
+<p>Name: <%= @client.name %></p>
+<p>Street: <%= @client.street %></p>
+<p>Postal Code: <%= @client.postal_code %></p>
+<p>City: <%= @client.city %></p>
+<p>Phone Number: <%= @client.phone_number %></p>
+
+<h3>Accounts</h3>
+<% @client.accounts.each do |account| %>
+<p><%= account.name %></p>
+<% end %>
+
+<%= link_to "Create new account", new_client_account_path(@client.uid) %>

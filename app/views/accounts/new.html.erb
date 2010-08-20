@@ -1,0 +1,8 @@
+<% form_tag client_accounts_path(params[:client_id]) do %>
+  <% fields_for :account do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br/>
+    <%= f.submit "Create account!" %>
+  <% end %>
+<% end %>

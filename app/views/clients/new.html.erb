@@ -1,0 +1,20 @@
+<% form_tag clients_path do %>
+  <% fields_for :client do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br/>
+    <%= f.label :street %>
+    <%= f.text_field :street %>
+    <br/>
+    <%= f.label :postal_code %>
+    <%= f.text_field :postal_code %>
+    <br/>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+    <br/>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+    <br/>
+    <%= f.submit "Create client!" %>
+  <% end %>
+<% end %>

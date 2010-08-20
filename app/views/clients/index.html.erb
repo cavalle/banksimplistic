@@ -1,0 +1,16 @@
+<%= link_to 'New client', new_client_path %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>City</th>
+    <th></th>
+  </tr>
+  <% @clients.each do |client| %>
+  <tr>
+    <td><%= client.name %></td>
+    <td><%= client.city %></td>
+    <td><%= link_to "Show", client_path(client.uid) %></td>
+  </tr>
+  <% end %>
+</table>
