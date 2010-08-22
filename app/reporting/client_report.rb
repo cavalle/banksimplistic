@@ -4,7 +4,7 @@ class ClientReport < Report
   attribute :uid
   
   on :client_created do |event|
-    create event.attributes.slice(:name, :city, :uid)
+    create event.data.slice(:name, :city, :uid)
   end
 
 end

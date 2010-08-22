@@ -19,7 +19,7 @@ class Client
   end
   
   def on_client_created(event)
-    self.uid = event.attributes[:uid]
+    self.uid = event.data[:uid]
     # ...set the rest of attributes if we need it in the domain (chances are we don't)
   end
   

@@ -14,8 +14,9 @@ feature "Feature name", %q{
     
     fill_in "Name", :with => "Personal Expenses"
     click "Create account!"
-    
-    page.should have_text(/Personal Expenses/)
+
+    page.should be_success
+    page.should have_content("Personal Expenses")
   end
   
 end

@@ -36,7 +36,7 @@ module AggregateRoot
   end
   
   def apply_event(name, attributes)
-    event = Event.new(name, uid, attributes)
+    event = Event.new(:name => name, :data => attributes)
     do_apply event
     event.aggregate_uid = uid
     applied_events << event

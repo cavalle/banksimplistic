@@ -21,6 +21,8 @@ feature "Create client", %q{
     page.should have_text(/Bernadette Peters/)
     
     click_link "Show"
+
+    page.should be_success
     page.should have_text(/Bernadette Peters/)
     page.should have_text(/17th Broadway, NY/)
     page.should have_text(/10002/)

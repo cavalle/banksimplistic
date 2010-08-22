@@ -17,7 +17,9 @@ Rails::Initializer.run do |config|
   config.gem 'uuidtools'
   config.gem 'ohm'
   
-  config.gem 'steak'
+  unless RAILS_ENV == 'production'
+    config.gem 'steak'
+  end
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"

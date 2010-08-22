@@ -1,7 +1,19 @@
-class Event
-  attr_accessor :name, :aggregate_uid, :attributes
+class Event < Ohm::Model
+  attribute :name
+  attribute :aggregate_uid
+  attribute :serialized_data
   
-  def initialize(*args)
-    @name, @aggregate_uid, @attributes = args
+  def data
+    @data ||= begin
+      value = read_local(:serialized_data)
+      value && YAML.load(value)
+    end
   end
+  
+  def data=(value)
+    @data = value
+    write_local(:serialized_data, value.to_yaml)
+  end
+  
+  index :aggregate_uid
 end

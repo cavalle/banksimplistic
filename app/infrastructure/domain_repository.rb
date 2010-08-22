@@ -1,7 +1,6 @@
 module DomainRepository
 
   class << self
-    include RedisRepository
   
     def aggregates
       Thread.current[:"DomainRepositoryCurrentStore"]
@@ -36,17 +35,16 @@ module DomainRepository
     private
     
     def find(type, uid)
-      Event # force autoload or next `decode` will fail
+      events = Event.find(:aggregate_uid => uid )
       
       # We could detect here that an aggregate doesn't exist (it has no events) 
       # instead of inside the aggregate itself
-      events = decode(lrange("fohjin:events:#{uid}", 0, -1)) || []
       
       type.camelize.constantize.build_from(events)
     end
     
     def save(event)
-      lpush "fohjin:events:#{event.aggregate_uid}", encode(event)
+      event.save
     end
     
     def publish(event)
