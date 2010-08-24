@@ -10,10 +10,10 @@ feature "Feature name", %q{
     client = create_client(:name => "Ruthie Henshall")
     
     visit client_page(client)
-    click_link "Create new account"
+    click_link "Open new account"
     
     fill_in "Name", :with => "Personal Expenses"
-    click "Create account!"
+    click "Open account!"
 
     page.should be_success
     page.should have_content("Personal Expenses")

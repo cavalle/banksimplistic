@@ -7,7 +7,7 @@ module DomainRepository
     end
   
     def begin
-      Thread.current[:"DomainRepositoryCurrentStore"] = []
+      Thread.current[:"DomainRepositoryCurrentStore"] = Set.new
     end
   
     def add(aggregate)
@@ -40,7 +40,7 @@ module DomainRepository
       # We could detect here that an aggregate doesn't exist (it has no events) 
       # instead of inside the aggregate itself
       
-      type.camelize.constantize.build_from(events)
+      add type.camelize.constantize.build_from(events)
     end
     
     def save(event)

@@ -28,8 +28,11 @@ module AggregateRoot
   end
   
   def method_missing(meth, *args, &blk)
-    if meth.to_s =~ /^should_(.+)/
-      raise "#{self.class.name.titleize} should #{$1} but doesn't" unless self.send("#{$1}s?")
+    if meth.to_s =~ /^should_([^_]+)(_.+)?/
+      verb = $1
+      predicate = $2
+      method = "#{third_personize($1)}#{$2}?"
+      raise "#{self.class.name.titleize} should #{verb}#{predicate.humanize} #{args.join(" ")} but that's not happening" unless self.send(method, *args)
     else
       super
     end
@@ -47,5 +50,14 @@ module AggregateRoot
   def do_apply(event)
     method_name = "on_#{event.name.to_s.underscore}".sub(/_event/,'')
     method(method_name).call(event)
+  end
+  
+  def third_personize(verb)
+    case verb
+    when /have/: "has"
+    when /s$/: verb
+    else
+      "#{verb}s"
+    end
   end
 end

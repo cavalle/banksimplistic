@@ -9,20 +9,35 @@ class ClientDetailsReport < Report
   index :uid
   
   list :accounts, Account
-  
+  list :cards, Card
+
   class Account < Report
     attribute :name
     attribute :uid
+    
+    index :uid
   end
-  
+
+  class Card < Report
+    attribute :card_number
+    reference :account, Account
+  end
+
   on :account_created do |event|
-    client = find(:uid => event.data["client_uid"])[0]
+    client = find(:uid => event.data[:client_uid])[0]
     client.accounts << Account.create(event.data.slice(:uid, :name))
     client.save
   end
   
   on :client_created do |event|
     create event.data.slice(:name, :street, :postal_code, 
-                                  :city, :phone_number, :uid)
+                            :city, :phone_number, :uid)
+  end
+  
+  on :new_card_assigned do |event|
+    client = find(:uid => event.data[:client_uid])[0]
+    account = Account.find(:uid => event.data[:account_uid])[0]
+    client.cards << Card.create(:account     => account, 
+                                :card_number => event.data[:card_number])
   end
 end

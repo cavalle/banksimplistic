@@ -1,7 +1,9 @@
 module CommandBus
-  def execute_command(name, attributes)
+  protected 
+  
+  def execute_command(*args)
     DomainRepository.begin
-    lookup_handler(name).execute(attributes)
+    lookup_handler(args.shift).execute(*args)
     DomainRepository.commit
   end
   

@@ -9,6 +9,5 @@ class Account
   
   def on_account_created(event)
     self.uid = event.data[:uid]
-    # ...set the rest of attributes if we need it in the domain (chances are we don't)
   end
 end
