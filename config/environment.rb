@@ -19,6 +19,7 @@ Rails::Initializer.run do |config|
   
   unless RAILS_ENV == 'production'
     config.gem 'steak'
+    config.gem 'capybara'
   end
 
   # Specify gems that this application depends on and have them installed with rake gems:install
