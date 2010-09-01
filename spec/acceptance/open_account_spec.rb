@@ -15,8 +15,20 @@ feature "Feature name", %q{
     fill_in "Name", :with => "Personal Expenses"
     click "Open account!"
 
-    page.should be_success
-    page.should have_content("Personal Expenses")
+    within_section("Accounts") do
+      page.should have_content("Personal Expenses")
+    end
+  end
+  
+  scenario "Accessing accounts from client page" do
+    client = create_client(:name => "Ruthie Henshall")
+    account = open_account(:client => client, :name => "Expenses")
+    
+    visit client_page(client)
+    
+    within_section("Accounts") do
+      page.should have_link(:to => account_page(account))
+    end
   end
   
 end

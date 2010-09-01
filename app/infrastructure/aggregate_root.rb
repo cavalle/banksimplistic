@@ -23,6 +23,10 @@ module AggregateRoot
     
   end
   
+  def exists?
+    self.uid.present?
+  end
+  
   def applied_events
     @applied_events ||= []
   end

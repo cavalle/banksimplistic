@@ -1,6 +1,10 @@
 class Client
   include AggregateRoot
   
+  def initialize
+    @account_uids = []
+  end
+  
   def self.create(attributes)
     client = self.new
     client.apply_event :client_created, attributes.merge(:uid => new_uid)
@@ -26,28 +30,20 @@ class Client
   
   protected
   
-  def account_uids
-    @account_uids ||= []
-  end
-  
-  def exists?
-    self.uid.present?
-  end
-  
   def generate_new_card_number
     4.times.map{ 4.times.map { rand(9) }.join }.join(" ") 
   end
   
   def owns_account?(account_uid)
-    self.account_uids.include? account_uid
+    @account_uids.include? account_uid
   end
   
   def on_client_created(event)
-    self.uid = event.data[:uid]
+    @uid = event.data[:uid]
   end
   
   def on_account_assigned_to_client(event)
-    self.account_uids << event.data[:account_uid]
+    @account_uids << event.data[:account_uid]
   end
   
   def on_new_card_assigned(event)

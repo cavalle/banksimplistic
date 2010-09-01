@@ -12,6 +12,10 @@ module NavigationHelpers
   def client_page(client)
     "#{clients_page}/#{client.uid}"
   end
+  
+  def account_page(account)
+    "/accounts/#{account.uid}"
+  end
 end
 
 Spec::Runner.configuration.include(NavigationHelpers)

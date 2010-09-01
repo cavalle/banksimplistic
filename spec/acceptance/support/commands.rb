@@ -4,8 +4,15 @@ module Commands
   end
   
   def open_account(attributes = {})
-    client_id = attributes.delete(:client).try(:uid)
+    attributes = attributes.dup
+    attributes[:client] ||= create_client
+    client_id = attributes.delete(:client).uid
     execute_command :open_account, client_id, attributes
+  end
+  
+  def deposit_cash(attributes = {})
+    account_id = attributes.delete(:account).uid
+    execute_command :deposit_cash, account_id, attributes
   end
   
   protected

@@ -1,0 +1,14 @@
+Balance: $<%= @account.balance %>
+
+<section>
+  <header>
+    <h3>Deposit Cash</h3>
+  </header>
+  <% form_tag account_deposits_path(@account.uid) do %>
+    <% fields_for :deposit do |f| %>
+      <%= f.label :amount %>
+      <%= f.text_field :amount %>
+      <%= f.submit "Deposit" %>
+    <% end %>
+  <% end %>
+</section>
