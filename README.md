@@ -2,15 +2,15 @@
 
 BankSimplistic is a sandbox for exploring concepts like Command-Query Responsibility Segregation (CQRS), Event Sourcing and Domain-Driven Design (DDD) with Ruby.
 
-It's unashamedly based on Mark Nijhof's [Fohjin](http://github.com/MarkNijhof/Fohjin) from which it borrows the domain model of the sample application as well as the main elements of its architecture. However, while Fohjin is a Windows app written in C#, BankSimplisting is a Rails web app coded using idiomatic Ruby.
+It's unashamedly based on Mark Nijhof's [Fohjin](http://github.com/MarkNijhof/Fohjin) from which it borrows the domain model of the sample application (a simple bank) as well as the main elements of its architecture. However, while Fohjin is a Windows app written in C#, BankSimplistic is a Ruby on Rails web app.
 
 ![Bank](http://dl.dropbox.com/u/645329/bank.jpg)
 
 ## Getting started ##
 
-BankSimplistic is a Rails 2.3.8 application developed on Ruby 1.8.7. Its gem dependencies are specified in the `environment.rb` file so they can be installed by just running:
+BankSimplistic is a Rails 3.0 application so the first thing to do to get started is to install its dependencies:
 
-    $ rake gems:install
+    $ bundle install
   
 For persistence the app uses [Redis](http://code.google.com/p/redis/). So a Redis server is expected to be installed and running on the standard port. This can be done easily in MacOSX like this:
 
@@ -71,20 +71,20 @@ This post, along with a series of posts linked from the [Fohjin's Readme](http:/
 
 For basic concepts like _aggregates_, _aggregate roots_, _entities_, etc. you can find several resources around the web, although the canonical one is the original DDD book by Eric Evans. This is gold.
 
+**[CQRS clarified](http://www.udidahan.com/2009/12/09/clarified-cqrs/)**
+
+Udi Dahan is one of the main promoters of the CQRS pattern. This post is a nice introduction to it.
+
 **[Why use event sourcing](http://codebetter.com/blogs/gregyoung/archive/2010/02/20/why-use-event-sourcing.aspx)**
 
-Greg Young is one of the main promotors of Event Sourcing. In this post he explains his particular vision of the pattern and the motivations and benefits of using it.
+Greg Young is another well known supporter of CQRS, particularly if combined with Event Sourcing. In this post he explains his particular vision of Event Sourcing and the motivations and benefits of using it with CQRS.
 
 **[Event Sourcing](http://martinfowler.com/eaaDev/EventSourcing.html)**
 
-Fowler's offers here a more comprehensive description of the pattern, including not also its benefits but also some drawbacks.
-
-**[Hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture)**
-
-Alistair Cockburn's article about another pattern which relates conceptually to the ones we're going into here.
+Fowler's offers here a more comprehensive description of Event Sourcing, including not only its benefits but also some drawbacks.
 
 ## Let's explore together ##
 
-If you're interested in exploring further the ideas and patterns behind BankSimplistic feel free to contact me, open issues in the tracker, add comments to the code or fork the project and share your own experiments (there are lot of things to try by just looking at the original Fohjin). 
+If you're interested in exploring further the ideas and patterns behind BankSimplistic feel free to contact me, open issues in the tracker, add comments to the code or fork the project and share your own experiments (there are a lot of things to try by just looking at the original Fohjin). 
 
 -- Luismi Cavallé
