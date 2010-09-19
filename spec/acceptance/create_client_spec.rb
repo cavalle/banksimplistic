@@ -18,16 +18,16 @@ feature "Create client", %q{
 
     click "Create client!"
     
-    page.should have_text(/Bernadette Peters/)
+    page.should have_content("Bernadette Peters")
     
     click_link "Show"
 
     page.should be_success
-    page.should have_text(/Bernadette Peters/)
-    page.should have_text(/17th Broadway, NY/)
-    page.should have_text(/10002/)
-    page.should have_text(/New York City/)
-    page.should have_text(/212-123-4567/)
+    page.should have_content("Bernadette Peters")
+    page.should have_content("17th Broadway, NY")
+    page.should have_content("10002")
+    page.should have_content("New York City")
+    page.should have_content("212-123-4567")
   end
   
 end

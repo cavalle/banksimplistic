@@ -1,5 +1,4 @@
 class ClientsController < ApplicationController
-  
   def index
     @clients = ClientReport.all
   end
@@ -12,5 +11,4 @@ class ClientsController < ApplicationController
     execute_command :create_client, params[:client]
     redirect_to clients_path
   end
-  
 end

@@ -1,6 +1,3 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
   include CommandBus
   
@@ -8,9 +5,5 @@ class ApplicationController < ActionController::Base
   # TODO: Move this to somewhere else or make automatically
   ClientReport; ClientDetailsReport; AccountDetailsReport
   
-  helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
-
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  protect_from_forgery
 end

@@ -26,4 +26,4 @@ module Commands
   
 end
 
-Spec::Runner.configuration.include(Commands)
+RSpec.configuration.include Commands, :type => :acceptance

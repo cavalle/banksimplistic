@@ -1,4 +1,4 @@
-<% form_tag client_cards_path(params[:client_id]) do %>
+<%=form_tag client_cards_path(params[:client_id]) do %>
   <% fields_for :card do |f| %>
     <%= f.label :account %>
     <%= f.collection_select :account, @client.accounts, :uid, :name %>
