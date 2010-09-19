@@ -17,7 +17,7 @@ feature "Deposit cash", %q{
     
     within_section("Deposit Cash") do
       fill_in "Amount", :with => "100"
-      click "Deposit"
+      click_button "Deposit"
     end
 
     page.should have_content "Balance: $100"

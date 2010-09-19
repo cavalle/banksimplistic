@@ -58,8 +58,8 @@ module AggregateRoot
   
   def third_personize(verb)
     case verb
-    when /have/: "has"
-    when /s$/: verb
+    when /have/ then "has"
+    when /s$/ then verb
     else
       "#{verb}s"
     end

@@ -13,7 +13,7 @@ feature "Feature name", %q{
     click_link "Open new account"
     
     fill_in "Name", :with => "Personal Expenses"
-    click "Open account!"
+    click_button "Open account!"
 
     within_section("Accounts") do
       page.should have_content("Personal Expenses")

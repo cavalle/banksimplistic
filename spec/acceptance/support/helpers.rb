@@ -1,6 +1,6 @@
 module HelperMethods
   def within_section(header_text, &block)
-    within("//section[./header[contains(., '#{header_text}')]]", &block)
+    within(:xpath, "//section[./header[contains(., '#{header_text}')]]", &block)
   end
   
   def have_link(options = {})

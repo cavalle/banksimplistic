@@ -8,7 +8,7 @@ feature "Create client", %q{
   
   scenario "New user sign up" do
     visit clients_page
-    click "New client"
+    click_link "New client"
 
     fill_in "Name", :with => "Bernadette Peters"
     fill_in "Street", :with => "17th Broadway, NY"
@@ -16,7 +16,7 @@ feature "Create client", %q{
     fill_in "City", :with => "New York City"
     fill_in "Phone number", :with => "212-123-4567"
 
-    click "Create client!"
+    click_button "Create client!"
     
     page.should have_content("Bernadette Peters")
     

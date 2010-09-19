@@ -11,10 +11,10 @@ feature "Assign new bank card", %q{
     account = open_account(:name => "Expenses", :client => client)
     
     visit client_page(client)
-    click "Assign new card"
+    click_link "Assign new card"
     
     select "Expenses", :from => "Account"
-    click "Assign card!"
+    click_button "Assign card!"
     
     within_section("Bank Cards") do
       page.should have_content("Expenses")
