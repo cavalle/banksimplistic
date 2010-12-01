@@ -8,7 +8,7 @@ gem 'ohm'
 group :development, :test do
   gem 'rspec-rails'
   gem 'steak'
-  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara'
   gem 'launchy'
   gem 'ruby-debug19'
 end

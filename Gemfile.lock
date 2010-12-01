@@ -1,17 +1,3 @@
-GIT
-  remote: git://github.com/jnicklas/capybara.git
-  revision: b022ca9926bfd0ad7afe2c9f722b2f8a7300f8af
-  specs:
-    capybara (0.4.0)
-      celerity (>= 0.7.9)
-      culerity (>= 0.2.4)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      selenium-webdriver (>= 0.0.27)
-      xpath (~> 0.1.2)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -46,6 +32,15 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
+    capybara (0.4.0)
+      celerity (>= 0.7.9)
+      culerity (>= 0.2.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      selenium-webdriver (>= 0.0.27)
+      xpath (~> 0.1.2)
     celerity (0.8.4)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
@@ -139,7 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  capybara!
+  capybara
   launchy
   ohm
   rails (= 3.0.0)
