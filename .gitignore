@@ -1,8 +1,9 @@
 # .gitignore
 .DS_Store
 log/*.log
-tmp/**/*
+tmp/*
 config/database.yml
 db/*.sqlite3
 dump.rdb
 .bundle
+*.swp
