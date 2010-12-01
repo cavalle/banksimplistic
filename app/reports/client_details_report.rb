@@ -24,7 +24,7 @@ class ClientDetailsReport < Report
   end
 
   on :account_created do |event|
-    client = find(:uid => event.data[:client_uid])[0]
+    client = find(:uid => event.data[:client_uid]).first
     client.accounts << Account.create(event.data.slice(:uid, :name))
     client.save
   end
@@ -35,8 +35,8 @@ class ClientDetailsReport < Report
   end
   
   on :new_card_assigned do |event|
-    client = find(:uid => event.data[:client_uid])[0]
-    account = Account.find(:uid => event.data[:account_uid])[0]
+    client = find(:uid => event.data[:client_uid]).first
+    account = Account.find(:uid => event.data[:account_uid]).first
     client.cards << Card.create(:account     => account, 
                                 :card_number => event.data[:card_number])
   end

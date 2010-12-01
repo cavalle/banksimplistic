@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   def new
-    @client = ClientDetailsReport.find(:uid => params[:client_id])[0]
+    @client = ClientDetailsReport.find(:uid => params[:client_id]).first
   end
   
   def create

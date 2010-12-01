@@ -4,7 +4,7 @@ class ClientsController < ApplicationController
   end
   
   def show
-    @client = ClientDetailsReport.find(:uid => params[:id])[0]
+    @client = ClientDetailsReport.find(:uid => params[:id]).first
   end
   
   def create

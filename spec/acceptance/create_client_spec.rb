@@ -17,7 +17,7 @@ feature "Create client", %q{
     fill_in "Phone number", :with => "212-123-4567"
 
     click_button "Create client!"
-    
+
     page.should have_content("Bernadette Peters")
     
     click_link "Show"

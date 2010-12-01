@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   def show
-    @account = AccountDetailsReport.find(:uid => params[:id])[0]
+    @account = AccountDetailsReport.find(:uid => params[:id]).first
   end
   
   def create
