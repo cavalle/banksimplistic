@@ -7,7 +7,9 @@ gem 'uuidtools'
 gem 'ohm'
 
 group :development, :test do
-  gem 'rspec-rails', '>= 2.0.0.beta.1'
-  gem 'steak', '>= 1.0.0.beta.1'
+  gem 'rspec-rails'
+  gem 'steak'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'launchy'
+  gem 'ruby-debug19'
 end
