@@ -26,22 +26,22 @@ module DomainRepository
     
     def method_missing(meth, *args, &blk)
       if meth.to_s =~ /^find_(.+)/
-        find($1, args.first)
+        find($1.camelize.constantize, args.first)
       else
         super
       end
     end
     
-    private
-    
-    def find(type, uid)
+    def find(klass, uid)
       events = Event.find(:aggregate_uid => uid )
       
       # We could detect here that an aggregate doesn't exist (it has no events) 
       # instead of inside the aggregate itself
       
-      add type.camelize.constantize.build_from(events)
+      add klass.build_from(events)
     end
+    
+    private
     
     def save(event)
       event.save

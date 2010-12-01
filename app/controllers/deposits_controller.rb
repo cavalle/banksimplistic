@@ -1,6 +1,11 @@
 class DepositsController < ApplicationController
+  
+  # POST /accounts/23/deposits
   def create
-    execute_command :deposit_cash, params[:account_id], params[:deposit]
-    redirect_to account_path(params[:account_id])
+    account = Account.find(params[:account_id])
+    account.deposite(params[:deposit][:amount].to_i)
+    
+    redirect_to account
   end
+  
 end

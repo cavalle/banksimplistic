@@ -21,6 +21,10 @@ module AggregateRoot
       UUIDTools::UUID.timestamp_create.to_s
     end
     
+    def find(id)
+      DomainRepository.find(self, id)
+    end
+    
   end
   
   def exists?
@@ -42,12 +46,15 @@ module AggregateRoot
     end
   end
   
-  def apply_event(name, attributes)
+  def publish(name, attributes)
     event = Event.new(:name => name, :data => attributes)
     do_apply event
     event.aggregate_uid = uid
-    applied_events << event
+    published_events << event
   end
+  
+  alias apply_event publish
+  alias published_events applied_events
 
   protected
 
@@ -64,4 +71,13 @@ module AggregateRoot
       "#{verb}s"
     end
   end
+  
+  public
+  
+  ### ActiveModel Compliance ###
+  ClassMethods.send :include, ActiveModel::Naming
+  def to_model; self; end
+  def to_key; uid; end
+  def to_param; uid; end
+  
 end

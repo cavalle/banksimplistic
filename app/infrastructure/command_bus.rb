@@ -1,4 +1,5 @@
 module CommandBus
+  
   protected 
   
   def execute_command(*args)

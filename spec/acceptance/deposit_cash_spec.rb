@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/acceptance_helper'
 feature "Deposit cash", %q{
   In order to have money to lend to other clients
   As a banker
-  I want clients to deposit cash in their accounts
+  I want clients to deposit cash into their accounts
 } do
   
   background do
@@ -19,7 +19,7 @@ feature "Deposit cash", %q{
       fill_in "Amount", :with => "100"
       click_button "Deposit"
     end
-
+    
     page.should have_content "Balance: $100"
   end
   
