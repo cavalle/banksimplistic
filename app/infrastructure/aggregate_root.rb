@@ -49,7 +49,7 @@ module AggregateRoot
     applied_events << event
   end
 
-  protected
+private
 
   def do_apply(event)
     method_name = "on_#{event.name.to_s.underscore}".sub(/_event/,'')

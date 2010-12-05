@@ -22,7 +22,7 @@ module Commands
     execute_command :assign_new_bank_card, attributes[:client].uid, attributes[:account].uid
   end
   
-  protected
+private
   
   def execute_command(*args)
     DomainRepository.begin

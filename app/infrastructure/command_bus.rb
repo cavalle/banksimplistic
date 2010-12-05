@@ -1,5 +1,5 @@
 module CommandBus
-  protected 
+private
   
   def execute_command(*args)
     DomainRepository.begin

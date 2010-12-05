@@ -42,7 +42,7 @@ class Client
                                  :card_number => card_number
   end
   
-  protected
+private
   
   def generate_new_card_number
     4.times.map{ 4.times.map { rand(9) }.join }.join(" ") 

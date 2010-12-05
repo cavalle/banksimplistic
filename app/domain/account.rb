@@ -20,7 +20,7 @@ class Account
                            :account_uid => uid
   end
   
-  protected
+private
   
   def on_account_created(event)
     @uid = event.data[:uid]
