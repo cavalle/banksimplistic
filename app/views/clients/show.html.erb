@@ -1,10 +1,16 @@
 <%= link_to "All clients", clients_path %>
 
-<p>Name: <%= @client.name %></p>
-<p>Street: <%= @client.street %></p>
-<p>Postal Code: <%= @client.postal_code %></p>
-<p>City: <%= @client.city %></p>
-<p>Phone Number: <%= @client.phone_number %></p>
+<section>
+  <header>
+    <h3>Client Info</h3>
+  </header>
+  <p>Name: <%= @client.name %></p>
+  <p>Street: <%= @client.street %></p>
+  <p>Postal Code: <%= @client.postal_code %></p>
+  <p>City: <%= @client.city %></p>
+  <p>Phone Number: <%= @client.phone_number %></p>
+  <%= link_to "Edit client info", edit_client_path(@client.uid) %>
+</section>
 
 <section>
   <header>
@@ -25,7 +31,19 @@
     <h3>Bank Cards</h3>
   </header>
   <% @client.cards.each do |card| %>
-  <p><%= card.card_number %> -- <%= card.account.name %></p>
+  <p>
+    <%= card.card_number %> -- <%= card.account.name %>
+    <%= link_to "Cancel this card", client_card_path(@client.uid, card.card_number), :method => :delete %>
+  </p>
   <% end %>
   <%= link_to "Assign new card", new_client_card_path(@client.uid) %>
+</section>
+
+<section>
+  <header>
+    <h3>Cancelled Cards</h3>
+  </header>
+  <% @client.cancelled_cards.each do |card| %>
+  <p><%= card.card_number %> -- <%= card.account.name %></p>
+  <% end %>
 </section>

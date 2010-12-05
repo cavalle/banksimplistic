@@ -9,13 +9,5 @@ RSpec.configure do |config|
   end
 end
 
-Capybara.save_and_open_page_path = File.join(Rails.root, 'tmp')
-
-class Capybara::Session
-  def success?
-    status_code == 200
-  end
-end
-
 # Put your acceptance spec helpers inside /spec/acceptance/support
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}

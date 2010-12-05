@@ -7,7 +7,7 @@ feature "Assign new bank card", %q{
 } do
   
   scenario "New card assigned to client" do
-    client  = create_client(:name => "Ruthie Henshall")
+    client  = create_client
     account = open_account(:name => "Expenses", :client => client)
     
     visit client_page(client)

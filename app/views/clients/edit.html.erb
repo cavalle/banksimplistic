@@ -1,0 +1,12 @@
+<section>
+  <header>
+    <h3>Client Info</h3>
+  </header>
+  <%= form_tag name_client_path(@client.uid), :method => :put do %>
+    <% fields_for :client do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.submit "Change name" %>
+    <% end %>
+  <% end %>
+</section>

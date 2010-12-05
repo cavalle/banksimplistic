@@ -2,6 +2,7 @@ Banksimplistic::Application.routes.draw do
   resources :clients do
     resources :accounts
     resources :cards
+    put :name, :on => :member
   end
   
   resources :accounts do

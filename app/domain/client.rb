@@ -27,6 +27,20 @@ class Client
                                     :account_uid => account_uid,
                                     :card_number => generate_new_card_number
   end
+
+  def change_name(new_name)
+    self.should_exist
+
+    apply_event :client_name_changed, :client_uid => uid,
+                                      :name => new_name
+  end
+
+  def cancel_card(card_number)
+    self.should_exist
+
+    apply_event :card_cancelled, :client_uid  => uid,
+                                 :card_number => card_number
+  end
   
   protected
   
@@ -50,4 +64,11 @@ class Client
     # no need to change state
   end
 
+  def on_client_name_changed(event)
+    # no need to change state
+  end
+
+  def on_card_cancelled(event)
+    # no need to change state
+  end
 end

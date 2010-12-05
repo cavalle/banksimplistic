@@ -14,6 +14,13 @@ module Commands
     account_id = attributes.delete(:account).uid
     execute_command :deposit_cash, account_id, attributes
   end
+
+  def assign_card(attributes = {})
+    attributes = attributes.dup
+    attributes[:client]  ||= create_client
+    attributes[:account] ||= open_account(:client => attributes[:client])
+    execute_command :assign_new_bank_card, attributes[:client].uid, attributes[:account].uid
+  end
   
   protected
   
