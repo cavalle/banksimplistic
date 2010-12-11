@@ -12,3 +12,18 @@ Balance: $<%= @account.balance %>
     <% end %>
   <% end %>
 </section>
+
+<section>
+  <header>
+    <h3>Money Transfers</h3>
+  </header>
+  <%= form_tag account_transfers_path(@account.uid) do %>
+    <% fields_for :transfer do |f| %>
+      <%= f.label :target_account_id %>
+      <%= f.text_field :target_account_id %>
+      <%= f.label :amount %>
+      <%= f.text_field :amount %>
+      <%= f.submit "Send money" %>
+    <% end %>
+  <% end %>
+</section>

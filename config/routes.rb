@@ -7,6 +7,7 @@ Banksimplistic::Application.routes.draw do
   
   resources :accounts do
     resources :deposits
+    resources :transfers
   end
   
   root :to => redirect("/clients")

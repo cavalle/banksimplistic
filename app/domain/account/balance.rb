@@ -8,4 +8,8 @@ class Account::Balance
   def deposite(amount)
     self.class.new(@amount + amount)
   end
+
+  def withdraw(amount)
+    self.class.new(@amount - amount)
+  end
 end
