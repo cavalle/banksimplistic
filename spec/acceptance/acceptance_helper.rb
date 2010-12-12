@@ -4,9 +4,6 @@ require 'capybara/rails'
 
 RSpec.configure do |config|
   config.include Capybara, :type => :acceptance
-  config.before(:each) do
-    Ohm.flush
-  end
 end
 
 # Put your acceptance spec helpers inside /spec/acceptance/support

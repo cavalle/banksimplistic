@@ -34,7 +34,6 @@ GEM
     arel (1.0.1)
       activesupport (~> 3.0.0)
     builder (2.1.2)
-    bunny (0.6.0)
     capybara (0.4.0)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
@@ -44,6 +43,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.2)
+    carrot (0.8.1)
     celerity (0.8.4)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
@@ -75,10 +75,6 @@ GEM
     ohm (0.1.3)
       nest (~> 1.0)
     polyglot (0.3.1)
-    qusion (0.1.3)
-      amqp (= 0.6.7)
-      bundler (~> 1.0.0)
-      rake (>= 0.8.7)
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
@@ -142,11 +138,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bunny
+  amqp
   capybara
+  carrot
   launchy
   ohm
-  qusion
   rails (= 3.0.0)
   rspec-rails
   ruby-debug19

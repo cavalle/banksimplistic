@@ -4,8 +4,8 @@ gem 'rails', '3.0.0'
 
 gem 'uuidtools'
 gem 'ohm'
-gem 'qusion'
-gem 'bunny'
+gem 'carrot'
+gem 'amqp', :require => 'mq'
 
 group :development, :test do
   gem 'rspec-rails'

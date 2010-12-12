@@ -12,8 +12,25 @@ module HelperMethods
   end
 end
 
-RSpec.configuration.before do
-  Bunny.run { |c| c.queue("events").purge }
+class Rack::Test::Session
+  def get_with_event_waiting(*args, &block)
+    EventBus.wait_for_events
+    get_without_event_waiting(*args, &block)
+  end
+  alias_method_chain :get, :event_waiting
 end
 
-RSpec.configuration.include HelperMethods, :type => :acceptance
+RSpec.configure do |config|
+  config.before(:all) do
+    Ohm.flush
+    EventBus.purge
+    Thread.new { AMQP.start { EventBus.start } }
+  end
+
+  config.after(:each) do
+    Ohm.flush
+    EventBus.purge
+  end
+
+  config.include HelperMethods, :type => :acceptance
+end

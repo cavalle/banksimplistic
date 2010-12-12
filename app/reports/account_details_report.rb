@@ -10,7 +10,7 @@ class AccountDetailsReport < Report
   
   on :deposite, :transfer_sent, :transfer_received do |event|
     account = find(:uid => event.data[:account_uid]).first
-    account.balance = event.data[:new_balance].amount
+    account.balance = event.data[:new_balance]
     account.save
   end
 end

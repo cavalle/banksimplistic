@@ -16,7 +16,7 @@ class Account
     
     new_balance = @balance.deposite(amount)
     apply_event :deposite, :amount      => amount, 
-                           :new_balance => new_balance, 
+                           :new_balance => new_balance.amount, 
                            :account_uid => uid
   end
 
@@ -26,7 +26,7 @@ class Account
     new_balance = @balance.withdraw(amount)
     apply_event :transfer_sent, :target_account_uid => target,
                                 :amount      => amount,
-                                :new_balance => new_balance,
+                                :new_balance => new_balance.amount,
                                 :account_uid => uid
   end
 
@@ -36,7 +36,7 @@ class Account
     new_balance = @balance.deposite(amount)
     apply_event :transfer_received, :source_account_uid => source,
                                     :amount      => amount,
-                                    :new_balance => new_balance,
+                                    :new_balance => new_balance.amount,
                                     :account_uid => uid
   end
   
@@ -47,15 +47,15 @@ private
   end
   
   def on_deposite(event)
-    @balance = event.data[:new_balance]
+    @balance = Balance.new(event.data[:new_balance])
   end
 
   def on_transfer_sent(event)
-    @balance = event.data[:new_balance]
+    @balance = Balance.new(event.data[:new_balance])
   end
 
   def on_transfer_received(event)
-    @balance = event.data[:new_balance]
+    @balance = Balance.new(event.data[:new_balance])
   end
   
 end
