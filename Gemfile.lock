@@ -28,8 +28,6 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
-    amqp (0.6.7)
-      eventmachine (>= 0.12.4)
     archive-tar-minitar (0.5.2)
     arel (1.0.1)
       activesupport (~> 3.0.0)
@@ -43,7 +41,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.2)
-    carrot (0.8.1)
     celerity (0.8.4)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
@@ -53,7 +50,6 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    eventmachine (0.12.10)
     ffi (0.6.3)
       rake (>= 0.8.7)
     i18n (0.4.2)
@@ -138,9 +134,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  amqp
   capybara
-  carrot
   launchy
   ohm
   rails (= 3.0.0)

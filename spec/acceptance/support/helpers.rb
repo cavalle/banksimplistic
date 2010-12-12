@@ -21,15 +21,14 @@ class Rack::Test::Session
 end
 
 RSpec.configure do |config|
-  config.before(:all) do
+  config.before(:each) do
     Ohm.flush
     EventBus.purge
-    Thread.new { AMQP.start { EventBus.start } }
+    @t = Thread.new { EventBus.start }
   end
 
   config.after(:each) do
-    Ohm.flush
-    EventBus.purge
+    @t.kill
   end
 
   config.include HelperMethods, :type => :acceptance

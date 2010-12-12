@@ -1,7 +1,7 @@
 module EventBus
   class << self
     def publish(event)
-      Carrot.queue('events').publish(event.id)
+      Redis.new.publish "events", event.id
     end
     
     def subscriptions(event_name)
@@ -18,14 +18,16 @@ module EventBus
     end
 
     def purge
-      Carrot.queue("events").purge
+      Redis.new.del "events"
     end
 
     def start
-      MQ.new.queue("events").subscribe do |event_id|
-        event = Event[event_id]
-        subscriptions(event.name).each do |subscription|
-          subscription.call(event)
+      Redis.new.subscribe("events") do |on|
+        on.message do |channel, event_id|
+          event = Event[event_id]
+          subscriptions(event.name).each do |subscription|
+            subscription.call(event)
+          end
         end
       end
     end
