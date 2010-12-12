@@ -6,6 +6,14 @@ module HelperMethods
   def have_link(options = {})
     have_xpath("//a[@href='#{options[:to]}']")
   end
+
+  def process(*args)
+    raise
+  end
+end
+
+RSpec.configuration.before do
+  Bunny.run { |c| c.queue("events").purge }
 end
 
 RSpec.configuration.include HelperMethods, :type => :acceptance
