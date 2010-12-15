@@ -25,9 +25,11 @@ RSpec.configure do |config|
     Ohm.flush
     EventBus.purge
     @t = Thread.new { EventBus.start }
+    @t.abort_on_exception = true
   end
 
   config.after(:each) do
+    EventBus.stop
     @t.kill
   end
 
