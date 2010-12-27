@@ -8,7 +8,7 @@ class AccountDetailsReport < Report
     create :uid => event.data[:uid], :balance => 0
   end
   
-  on :deposite, :transfer_sent, :transfer_received do |event|
+  on :deposite, :transfer_sent, :transfer_received, :failed_transfer_compensated do |event|
     account = find(:uid => event.data[:account_uid]).first
     account.balance = event.data[:new_balance]
     account.save

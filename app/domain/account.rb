@@ -39,6 +39,15 @@ class Account
                                     :new_balance => new_balance.amount,
                                     :account_uid => uid
   end
+
+  def compensate_failed_transfer(amount)
+    self.should_exist
+
+    new_balance = @balance.deposite(amount)
+    apply_event :failed_transfer_compensated, :amount      => amount,
+                                              :new_balance => new_balance.amount,
+                                              :account_uid => uid
+  end
   
 private
   
@@ -55,6 +64,10 @@ private
   end
 
   def on_transfer_received(event)
+    @balance = Balance.new(event.data[:new_balance])
+  end
+
+  def on_failed_transfer_compensated(event)
     @balance = Balance.new(event.data[:new_balance])
   end
   

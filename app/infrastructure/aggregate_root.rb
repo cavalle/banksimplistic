@@ -35,8 +35,8 @@ module AggregateRoot
     if meth.to_s =~ /^should_([^_]+)(_.+)?/
       verb = $1
       predicate = $2
-      method = "#{third_personize($1)}#{$2}?"
-      raise "#{self.class.name.titleize} should #{verb}#{predicate.humanize} #{args.join(" ")} but that's not happening" unless self.send(method, *args)
+      method = "#{third_personize(verb)}#{predicate}?"
+      raise "#{self.class.name.titleize} should #{verb}#{predicate.try(:humanize)} #{args.join(" ")}" unless self.send(method, *args)
     else
       super
     end

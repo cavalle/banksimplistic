@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + "/../spec_helper"
 require "steak"
 require 'capybara/rails'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   config.include Capybara, :type => :acceptance

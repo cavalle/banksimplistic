@@ -13,4 +13,5 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'ruby-debug19'
+  gem 'webmock'
 end
