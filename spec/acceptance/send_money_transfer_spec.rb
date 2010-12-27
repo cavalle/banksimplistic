@@ -25,7 +25,4 @@ feature "Send Money Transfer", %q{
     page.should have_content "Balance: $19"
   end
 
-  scenario "Trying to send money without funds"
-
-  scenario "Send command twice"
 end
