@@ -15,7 +15,6 @@ feature "Change Client Name", %q{
     fill_in "Name", :with => "Ruthie Harrington"
     click_button "Change name"
 
-    page.should be_success
     page.should have_no_content("Ruthie Henshall")
     page.should have_content("Ruthie Harrington")
 

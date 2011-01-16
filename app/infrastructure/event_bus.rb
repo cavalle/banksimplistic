@@ -42,7 +42,7 @@ class RedisEventBus
   end
 
   def wait_for_events
-    sleep(0.1) # next_tick 
+    sleep(0.05) # next_tick 
   end
 
   def purge
@@ -101,5 +101,3 @@ class AMQPEventBus
     wait_for_events
   end
 end
-
-EventBus.current = RedisEventBus.new

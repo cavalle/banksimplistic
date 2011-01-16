@@ -22,7 +22,6 @@ feature "Create client", %q{
     
     click_link "Show"
 
-    page.should be_success
     page.should have_content("Bernadette Peters")
     page.should have_content("17th Broadway, NY")
     page.should have_content("10002")
