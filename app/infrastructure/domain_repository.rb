@@ -32,8 +32,6 @@ module DomainRepository
       end
     end
     
-    private
-    
     def find(type, uid)
       events = Event.find(:aggregate_uid => uid )
       
@@ -42,11 +40,13 @@ module DomainRepository
       
       add type.camelize.constantize.build_from(events)
     end
+
+    private
     
     def save(event)
       event.save
     end
-    
+
     def publish(event)
       EventBus.publish(event)
     end

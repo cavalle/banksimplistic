@@ -1,8 +1,7 @@
 class CreateClientCommandHandler
   
   def execute(attributes)
-    client = Client.create(attributes)
-    DomainRepository.add(client)
+    Client.create(attributes)
   end
   
 end

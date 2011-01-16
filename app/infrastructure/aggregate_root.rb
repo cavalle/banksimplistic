@@ -20,6 +20,10 @@ module AggregateRoot
     def new_uid
       UUIDTools::UUID.timestamp_create.to_s
     end
+
+    def find(uid)
+      DomainRepository.find(self.name.underscore, uid)
+    end
     
   end
   
@@ -47,6 +51,7 @@ module AggregateRoot
     do_apply event
     event.aggregate_uid = uid
     applied_events << event
+    DomainRepository.add(self)
   end
 
 private
