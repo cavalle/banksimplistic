@@ -19,7 +19,7 @@ feature "Assign new bank card", %q{
 
     within_section("Bank Cards") do
       page.should have_content("Expenses")
-      page.should have_xpath("/./*", :text => /(\d{4} ?){4}/)
+      page.should have_xpath("/./*", :text => /(\d{4}-?){4}/)
     end
   end
   

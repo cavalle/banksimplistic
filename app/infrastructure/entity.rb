@@ -1,4 +1,4 @@
-module AggregateRoot
+module Entity
   
   def self.included(base)
     base.class_eval do
@@ -64,6 +64,7 @@ private
   def third_personize(verb)
     case verb
     when /have/ then "has"
+    when /be/ then "is"
     when /s$/ then verb
     else
       "#{verb}s"

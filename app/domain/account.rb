@@ -1,5 +1,5 @@
 class Account
-  include AggregateRoot
+  include Entity
   
   def initialize
     @balance = Balance.new
