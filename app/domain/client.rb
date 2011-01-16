@@ -3,6 +3,7 @@ class Client
   
   def initialize
     @account_uids = []
+    @cards = {}
   end
   
   def self.create(attributes)
@@ -25,7 +26,7 @@ class Client
 
     apply_event :new_card_assigned, :client_uid  => uid,
                                     :account_uid => account_uid,
-                                    :card_number => generate_new_card_number
+                                    :card_number => BankCard.generate_number
   end
 
   def change_name(new_name)
@@ -37,19 +38,19 @@ class Client
 
   def cancel_card(card_number)
     self.should_exist
+    self.should_own_card card_number
 
-    apply_event :card_cancelled, :client_uid  => uid,
-                                 :card_number => card_number
+    @cards[card_number].cancel
   end
   
 private
   
-  def generate_new_card_number
-    4.times.map{ 4.times.map { rand(9) }.join }.join(" ") 
-  end
-  
   def owns_account?(account_uid)
     @account_uids.include? account_uid
+  end
+
+  def owns_card?(card_uid)
+    @cards[card_uid].present?
   end
   
   def on_client_created(event)
@@ -61,7 +62,7 @@ private
   end
   
   def on_new_card_assigned(event)
-    # no need to change state
+    @cards[event.data[:card_number]] = BankCard.new(event.data[:card_number], self)
   end
 
   def on_client_name_changed(event)
@@ -69,6 +70,6 @@ private
   end
 
   def on_card_cancelled(event)
-    # no need to change state
+    @cards[event.data[:card_number]].on_card_cancelled(event)
   end
 end

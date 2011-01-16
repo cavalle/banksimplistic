@@ -1,4 +1,5 @@
 module AggregateRoot
+  include Validable
   
   def self.included(base)
     base.class_eval do
@@ -35,17 +36,6 @@ module AggregateRoot
     @applied_events ||= []
   end
   
-  def method_missing(meth, *args, &blk)
-    if meth.to_s =~ /^should_([^_]+)(_.+)?/
-      verb = $1
-      predicate = $2
-      method = "#{third_personize(verb)}#{predicate}?"
-      raise "#{self.class.name.titleize} should #{verb}#{predicate.try(:humanize)} #{args.join(" ")}" unless self.send(method, *args)
-    else
-      super
-    end
-  end
-  
   def apply_event(name, attributes)
     event = Event.new(:name => name, :data => attributes)
     do_apply event
@@ -60,13 +50,5 @@ private
     method_name = "on_#{event.name.to_s.underscore}".sub(/_event/,'')
     method(method_name).call(event)
   end
-  
-  def third_personize(verb)
-    case verb
-    when /have/ then "has"
-    when /s$/ then verb
-    else
-      "#{verb}s"
-    end
-  end
+
 end
