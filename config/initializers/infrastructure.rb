@@ -1,6 +1,2 @@
-EventBus.current = RedisEventBus.new
-
-# Force autoloading of Event Subscribers:
-ClientReport; ClientDetailsReport; AccountDetailsReport
-MoneyTransferSaga
-
+Rails.configuration.event_bus = 'RedisEventBus'
+Rails.configuration.event_subscribers = ClientReport, ClientDetailsReport, AccountDetailsReport, MoneyTransferSaga

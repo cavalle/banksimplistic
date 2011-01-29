@@ -168,3 +168,5 @@ class ZeroMQEventBus
     server.close if server
   end
 end
+
+EventBus.current = Rails.configuration.event_bus.constantize.new
