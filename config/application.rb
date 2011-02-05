@@ -48,5 +48,9 @@ module Banksimplistic
       g.controller_specs = false
       g.view_specs = false
     end
+
+    config.logger    = Logger.new(STDOUT)
+    config.log_level = :info
+
   end
 end
