@@ -67,7 +67,7 @@ class RedisEventBus
   def start
     redis.subscribe("events") do |on|
       on.message do |channel, event_id|
-        event = Event[event_id]
+        event = Event.find(event_id)
         subscriptions(event.name).each do |subscription|
           subscription.call(event)
         end

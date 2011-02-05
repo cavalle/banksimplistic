@@ -33,7 +33,7 @@ module DomainRepository
     end
     
     def find(type, uid)
-      events = Event.find(:aggregate_uid => uid )
+      events = Event.where(:aggregate_uid => uid )
       
       # We could detect here that an aggregate doesn't exist (it has no events) 
       # instead of inside the aggregate itself
