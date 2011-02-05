@@ -170,4 +170,3 @@ class ZeroMQEventBus
 end
 
 EventBus.current = Rails.configuration.event_bus.constantize.new
-Rails.configuration.event_subscribers.each(&:constantize)
