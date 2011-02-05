@@ -28,8 +28,18 @@ class InProcessEventBus
 end
 
 class RedisEventBus
+  
+  def redis
+    if ENV["REDISTOGO_URL"]
+      uri = URI.parse(ENV["REDISTOGO_URL"])
+      Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+    else
+      Redis.new
+    end
+  end
+  
   def publish(event)
-    Redis.new.publish "events", event.id
+    redis.publish "events", event.id
   end
 
   def subscriptions(event_name)
@@ -46,11 +56,11 @@ class RedisEventBus
   end
 
   def purge
-    Redis.new.del "events"
+    redis.del "events"
   end
 
   def start
-    Redis.new.subscribe("events") do |on|
+    redis.subscribe("events") do |on|
       on.message do |channel, event_id|
         event = Event[event_id]
         subscriptions(event.name).each do |subscription|
