@@ -17,6 +17,10 @@ For persistence the app uses [Redis](http://code.google.com/p/redis/). So a Redi
     $ brew install redis
     $ redis-server
   
+You also need libzeromq:
+    
+    $ brew install zeromq
+
 With all that set, the test suite should pass by just running:
 
     $ rake
