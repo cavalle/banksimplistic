@@ -1,2 +1,1 @@
-rvm --create use 1.9.2@banksimplistic > /dev/null
-rvm wrapper current textmate
+rvm --create use 1.9.2 > /dev/null
