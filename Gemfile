@@ -13,6 +13,8 @@ group :development, :test do
   gem 'steak'
   gem 'capybara'
   gem 'launchy'
-  gem 'ruby-debug19'
+  gem 'SystemTimer',  :platform => :ruby_18
+  gem 'ruby-debug',   :platform => :ruby_18
+  gem 'ruby-debug19', :platform => :ruby_19
   gem 'webmock'
 end

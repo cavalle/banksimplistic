@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    SystemTimer (1.2.3)
     abstract (1.0.0)
     actionmailer (3.0.0)
       actionpack (= 3.0.0)
@@ -64,6 +65,7 @@ GEM
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
+    linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
     mail (2.2.14)
@@ -111,6 +113,11 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.4.0)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
     ruby-debug-base19 (0.11.24)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -144,6 +151,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  SystemTimer
   amqp
   capybara
   carrot
@@ -152,6 +160,7 @@ DEPENDENCIES
   ohm
   rails (= 3.0.0)
   rspec-rails
+  ruby-debug
   ruby-debug19
   steak
   uuidtools
