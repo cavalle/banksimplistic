@@ -16,10 +16,6 @@ For persistence the app uses [Redis](http://code.google.com/p/redis/). So a Redi
 
     $ brew install redis
     $ redis-server
-  
-You also need libzeromq:
-    
-    $ brew install zeromq
 
 With all that set, the test suite should pass by just running:
 
@@ -59,9 +55,11 @@ This is the equivalent to the missing `app/models` and you'll find the entities 
 
 Reports are subscribed to events from the domain model and update themselves according to those events. That way they are always in sync but totally uncoupled from the domain model. The reporting repository is denormalized and persisted with Redis.
 
-**app/infrastructure**
+**lib/infrastructure**
 
-Typically the contents of this directory would be inside `lib` (or a plugin or gem) but, for development purposes, it turned out more convenient to put them in directory added to the `load_path`
+Infrastructure libraries. Most of the magic is here. Including implementations of the Event Bus using different technologies (ZeroMQ, AMQP, Redis…)
+
+Configuration and initialization can be found at `config/initializers/infrastructure.rb` (if you want to try alternative Event Buses you should look here)
 
 **spec/acceptance**
 
