@@ -24,6 +24,12 @@ You also need libzeromq:
 With all that set, the test suite should pass by just running:
 
     $ rake
+    
+To start the servers in development mode you can use [foreman](http://blog.daviddollar.org/2011/05/06/introducing-foreman.html):
+
+    $ foreman start
+    
+The app is now running at [http://localhost:3000](http://localhost:3000)
   
 ## Directory Structure ##
 
