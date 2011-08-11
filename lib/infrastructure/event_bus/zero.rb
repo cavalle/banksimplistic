@@ -6,14 +6,8 @@ class EventBus::Zero
     s = ctx.socket ZMQ::PUSH
     s.connect("tcp://127.0.0.1:5560")
     s.send_string(event.id.to_s)
-    
-    # Release socket after a delay since ZMQ
-    # doesn't flush if we close right away
-    Thread.new do
-      sleep(1)
-      s.close
-      ctx.terminate
-    end
+    s.close
+    ctx.terminate
   end
 
   def subscriptions(event_name)
@@ -33,6 +27,7 @@ class EventBus::Zero
   end
 
   def start
+    @terminators = []
     ctx = ZMQ::Context.new
     s = ctx.socket ZMQ::PULL
     s.bind("tcp://127.0.0.1:5560")
@@ -52,17 +47,6 @@ class EventBus::Zero
 
   def stop
     @running = false
-    sleep(0.1) until available_port?('127.0.0.1', 5560) 
   end
 
-  private
-
-  def available_port?(host, port)
-    server = TCPServer.new(host, port)
-    return true
-  rescue
-    return false
-  ensure
-    server.close if server
-  end
 end
