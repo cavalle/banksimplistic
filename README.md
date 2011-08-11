@@ -19,7 +19,7 @@ For persistence the app uses [Redis](http://code.google.com/p/redis/). So a Redi
 
 With all that set, the test suite should pass by just running:
 
-    $ rake
+    $ bundle exec rake
     
 To start the servers in development mode you can use [foreman](http://blog.daviddollar.org/2011/05/06/introducing-foreman.html):
 
