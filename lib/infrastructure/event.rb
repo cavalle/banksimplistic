@@ -6,7 +6,7 @@ class Event < Ohm::Model
   def data
     @data ||= begin
       value = read_local(:serialized_data)
-      value && YAML.load(value)
+      value && YAML.load(value).with_indifferent_access
     end
   end
   
