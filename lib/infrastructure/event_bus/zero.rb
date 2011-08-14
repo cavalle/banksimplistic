@@ -27,7 +27,6 @@ class EventBus::Zero
   end
 
   def start
-    @terminators = []
     ctx = ZMQ::Context.new
     s = ctx.socket ZMQ::PULL
     s.bind("tcp://127.0.0.1:5560")
