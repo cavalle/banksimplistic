@@ -1,41 +1,59 @@
-require 'carrot'
-require 'mq'
+require 'amqp'
+require 'bunny'
 
 class EventBus::AMQP
+
   def publish(event)
-    Carrot.queue('events').publish(event.id)
+    Bunny.run do |mq|
+      mq.exchange(event.name, :type => :fanout).publish(event.id)
+    end    
   end
 
-  def subscriptions(event_name)
-    @subscriptions ||= Hash.new
-    @subscriptions[event_name.to_s] ||= Set.new
+  def subscribe(event_name, handler_id, &handler)
+    subscriptions << Subscription.new(event_name, handler_id, handler)
   end
 
-  def subscribe(event_name, &handler)
-    subscriptions(event_name.to_s) << handler
-  end
-
-  def wait_for_events
-    sleep(0.15) # next_tick 
+  def wait_for_events    
+    return unless EM.reactor_running?    
+    next_tick = false
+    EM.next_tick { next_tick = true }
+    sleep 0.002 until next_tick
   end
 
   def purge
-    Carrot.queue("events").purge
+    Bunny.run do |mq|
+      subscriptions.each { |s| s.purge(mq) }
+    end
   end
 
   def start
     AMQP.start do
-      MQ.new.queue("events").subscribe do |event_id|
-        event = Event[event_id]
-        subscriptions(event.name).each do |subscription|
-          subscription.call(event)
-        end
-      end
+      subscriptions.each { |s| s.subscribe(MQ) }
     end
   end
 
   def stop
     AMQP.stop { EM.stop }
-    wait_for_events
   end
+  
+  private
+  
+  def subscriptions
+    @subscriptions ||= []
+  end
+  
+  class Subscription < Struct.new(:event, :queue, :handler)
+    
+    def subscribe(mq)
+      mq.queue(queue).bind(mq.fanout(event)).subscribe do |event_id|
+        handler.call Event[event_id]
+      end
+    end
+    
+    def purge(mq)
+      mq.queue(queue).purge
+    end
+      
+  end
+  
 end

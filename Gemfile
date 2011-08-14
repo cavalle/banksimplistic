@@ -5,9 +5,10 @@ gem 'rails', '3.0.0'
 gem 'uuidtools'
 gem 'ohm'
 
-gem 'carrot',   :require => false
-gem 'ffi-rzmq', :require => false
+gem 'bunny',    :require => false
 gem 'amqp',     :require => false
+
+gem 'ffi-rzmq', :require => false
 
 group :development, :test do
   gem 'rspec-rails'

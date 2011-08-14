@@ -15,7 +15,7 @@ class EventBus::Zero
     @subscriptions[event_name.to_s] ||= Set.new
   end
 
-  def subscribe(event_name, &handler)
+  def subscribe(event_name, handler_id, &handler)
     subscriptions(event_name.to_s) << handler
   end
 

@@ -15,6 +15,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     EventBus.stop
+    @t.join(1)
     @t.kill
     Capybara.reset_sessions!
   end

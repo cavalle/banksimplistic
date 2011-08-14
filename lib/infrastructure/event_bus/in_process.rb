@@ -10,7 +10,7 @@ class EventBus::InProcess
     @subscriptions[event_name] ||= Set.new
   end
 
-  def subscribe(event_name, &handler)
+  def subscribe(event_name, handler_id, &handler)
     subscriptions(event_name) << handler
   end
 
