@@ -14,10 +14,14 @@ class EventBus::AMQP
   end
 
   def wait_for_events    
+    next_tick
+  end
+  
+  def next_tick
     return unless EM.reactor_running?    
-    next_tick = false
-    EM.next_tick { next_tick = true }
-    sleep 0.002 until next_tick
+    t = Thread.current
+    EM.next_tick { t.wakeup }
+    Thread.stop
   end
 
   def purge

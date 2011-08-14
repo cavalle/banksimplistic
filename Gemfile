@@ -5,6 +5,8 @@ gem 'rails', '3.0.0'
 gem 'uuidtools'
 gem 'ohm'
 
+gem 'em-redis', :require => false
+
 gem 'bunny',    :require => false
 gem 'amqp',     :require => false
 
