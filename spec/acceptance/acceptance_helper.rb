@@ -8,21 +8,18 @@ RSpec.configure do |config|
 
   config.before(:each) do
     Ohm.flush
-    EventBus.purge
-    @t = Thread.new { EventBus.start }
-    @t.abort_on_exception = true
   end
 
   config.after(:each) do
-    EventBus.stop
-    @t.join(1)
-    @t.kill
     Capybara.reset_sessions!
   end
 end
 
+Eventwire.on_error do |ex|
+  raise ex
+end
+
 Capybara.app = Proc.new { |env|
-  EventBus.wait_for_events
   Rails.application.call(env)
 }
 

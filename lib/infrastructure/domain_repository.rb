@@ -1,6 +1,8 @@
 module DomainRepository
 
   class << self
+    
+    include Eventwire::Publisher
   
     def aggregates
       Thread.current[:"DomainRepositoryCurrentStore"]
@@ -48,7 +50,7 @@ module DomainRepository
     end
 
     def publish(event)
-      EventBus.publish(event)
+      publish_event(event.name, {:data => event.data})
     end
     
   end

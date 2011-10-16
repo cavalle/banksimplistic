@@ -28,7 +28,6 @@ private
     DomainRepository.begin
     result = "#{args.shift}_command_handler".camelize.constantize.new.execute(*args)
     DomainRepository.commit
-    EventBus.wait_for_events
     result
   end
   
