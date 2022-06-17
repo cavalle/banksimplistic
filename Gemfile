@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.2.22.5'
 
 gem 'uuidtools'
 gem 'ohm'
